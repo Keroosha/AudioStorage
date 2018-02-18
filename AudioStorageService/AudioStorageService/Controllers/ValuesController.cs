@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AudioStorageService.DI;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AudioStorageService.Controllers
@@ -13,7 +14,12 @@ namespace AudioStorageService.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            var test = new KerooshaSettings();
+
+            return new string[]
+            {
+                test.First(x => x.key == "version").value
+            };
         }
 
         // GET api/values/5
