@@ -1,0 +1,10 @@
+[
+  {
+    "key": "version",
+    "value": "v0.0.1"
+  },
+  {
+    "key": "DbString",
+    "value": "Host=db;Database=AudioStorage;Username=postgres;Password=goaway359"
+  }
+]

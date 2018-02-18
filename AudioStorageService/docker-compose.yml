@@ -6,3 +6,11 @@ services:
     build:
       context: .
       dockerfile: AudioStorageService/Dockerfile
+    links:
+    - "PostgreSQL:db"
+
+  PostgreSQL:
+    image: postgres
+    restart: always
+    enviroment:
+      POSTGRES_PASSWORD: goaway359

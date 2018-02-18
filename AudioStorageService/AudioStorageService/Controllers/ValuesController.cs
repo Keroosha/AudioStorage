@@ -10,15 +10,20 @@ namespace AudioStorageService.Controllers
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        private readonly KerooshaSettings _serverSettings;
+
+        public ValuesController(KerooshaSettings serverSettings)
+        {
+            _serverSettings = serverSettings;
+        }
+        
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            var test = new KerooshaSettings();
-
             return new string[]
             {
-                test.First(x => x.key == "version").value
+                _serverSettings.First(x => x.key == "version").value
             };
         }
 
