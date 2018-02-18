@@ -11,6 +11,7 @@ COPY . .
 WORKDIR /src/AudioStorageService
 RUN dotnet build -c Release -o /app
 
+
 FROM build AS publish
 RUN dotnet publish -c Release -o /app
 

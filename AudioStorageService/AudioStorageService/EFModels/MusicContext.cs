@@ -13,9 +13,8 @@ namespace AudioStorageService.EFModels
         {
             
         }
-
-        public System.Data.Entity.DbSet<Artist> Artists { get; set; }
-        public System.Data.Entity.DbSet<Album> Albums { get; set; }
-        public System.Data.Entity.DbSet<Song> Songs { get; set; }
+        public DbSet<Artist> Artists { get; set; }
+        public DbSet<Album> Albums { get; set; }
+        public DbSet<Song> Songs { get; set; }
     }
 }

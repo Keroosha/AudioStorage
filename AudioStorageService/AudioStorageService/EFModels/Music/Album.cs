@@ -9,11 +9,11 @@ namespace AudioStorageService.EFModels.Music
     public class Album
     {
         [Key]
-        public int AlbumID;
+        public int Id { get; set; }
 
-        public string Name;
-        public Artist Artist;
-        public DateTime ReleaseDate;
+        public string Name { get; set; }
+        public Artist Artist { get; set; }
+        public DateTime ReleaseDate { get; set; }
         public virtual List<Song> Songs { get; set; }
     }
 }

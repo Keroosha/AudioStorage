@@ -8,9 +8,8 @@ namespace AudioStorageService.EFModels.Music
 {
     public class Artist
     {
-        [Key]
-        public int ArtistID;
-        public string Name;
+        [Key] public int Id { get; set; }
+        public string Name { get; set; }
 
         public virtual List<Album> Albums { get; set; }
         public virtual List<Song> Songs { get; set; }

@@ -6,4 +6,5 @@ services:
     volumes:
       - .:/src
     working_dir: /src
-    command: /bin/bash -c "dotnet restore ./AudioStorageService.sln && dotnet publish ./AudioStorageService.sln -c Release -o ./obj/Docker/publish"
+    command: /bin/bash -c "dotnet restore ./AudioStorageService.sln &&\
+    dotnet publish ./AudioStorageService.sln -c Release -o ./obj/Docker/publish"
