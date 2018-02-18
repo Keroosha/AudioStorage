@@ -29,6 +29,12 @@ namespace AudioStorageService.LocalStorage
             var folderPath = _appSettings.First(x => x.key == "ScanFolder").value;
             foreach (var filePath in Directory.GetFiles(folderPath,"*.mp3"))
             {
+                if(_musicContext.Songs.Any())
+                    if (_musicContext.Songs.FirstOrDefault(x => x.Path == filePath) != null)
+                    {
+                        continue;
+                    }
+
                 var mp3File = TagLib.File.Create(filePath);
                 var artist = _musicContext.Artists.FirstOrDefault(x => x.Name == mp3File.Tag.Performers.First())
                     ?? new Artist()

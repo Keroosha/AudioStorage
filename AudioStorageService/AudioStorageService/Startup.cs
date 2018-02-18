@@ -57,11 +57,18 @@ namespace AudioStorageService
 
             app.UseHangfireServer();
 
-            //Adding auto-migrate cuz docker
-            serviceProvider
-                .GetService<MusicContext>()
-                .Database
-                .Migrate();
+           //Adding auto-migrate cuz docker
+            try
+            {
+                serviceProvider
+                    .GetService<MusicContext>()
+                    .Database
+                    .Migrate();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
 
             var MContext = serviceProvider.GetService<MusicContext>();
             MContext.Artists.Add(new Artist()
