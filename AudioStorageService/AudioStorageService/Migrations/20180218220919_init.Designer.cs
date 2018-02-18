@@ -11,7 +11,7 @@ using System;
 namespace AudioStorageService.Migrations
 {
     [DbContext(typeof(MusicContext))]
-    [Migration("20180218154012_init")]
+    [Migration("20180218220919_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -61,6 +61,8 @@ namespace AudioStorageService.Migrations
                     b.Property<int?>("ArtistId");
 
                     b.Property<string>("Name");
+
+                    b.Property<string>("Path");
 
                     b.HasKey("Id");
 

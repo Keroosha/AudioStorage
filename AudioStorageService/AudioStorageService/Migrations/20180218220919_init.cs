@@ -51,7 +51,8 @@ namespace AudioStorageService.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     AlbumId = table.Column<int>(nullable: true),
                     ArtistId = table.Column<int>(nullable: true),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
+                    Path = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

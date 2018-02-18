@@ -16,6 +16,7 @@ FROM build AS publish
 RUN dotnet publish -c Release -o /app
 
 FROM base AS final
+VOLUME /app/Music
 WORKDIR /app
 COPY --from=publish /app .
 ENTRYPOINT ["dotnet", "AudioStorageService.dll"]

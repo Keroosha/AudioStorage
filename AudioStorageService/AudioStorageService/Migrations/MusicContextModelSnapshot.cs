@@ -61,6 +61,8 @@ namespace AudioStorageService.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<string>("Path");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AlbumId");

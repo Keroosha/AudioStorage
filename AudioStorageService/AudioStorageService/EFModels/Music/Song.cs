@@ -10,5 +10,6 @@ namespace AudioStorageService.EFModels.Music
         public string Name { get; set; }
         public Artist Artist { get; set; }
         public Album Album { get; set; }
+        public string Path { get; set; }
     }
 }

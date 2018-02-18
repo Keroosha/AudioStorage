@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using AudioStorageService.DI;
 using AudioStorageService.EFModels;
+using AudioStorageService.EFModels.Music;
+using Hangfire;
+using Hangfire.PostgreSql;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +19,8 @@ namespace AudioStorageService
 {
     public class Startup
     {
+
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -26,11 +31,18 @@ namespace AudioStorageService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var dbString = new KerooshaSettings().First(x => x.key == "DbString").value;
+
             services.AddMvc();
             services.AddTransient<KerooshaSettings>();
+            services.AddHangfire(configuration =>
+            {
+                configuration.UseStorage(new PostgreSqlStorage(dbString));
+            });
+
             services.AddEntityFrameworkNpgsql().AddDbContext<MusicContext>(options =>
             {
-                options.UseNpgsql(new KerooshaSettings().First(x => x.key == "DbString").value);
+                options.UseNpgsql(dbString);
             });
         }
 
@@ -43,10 +55,21 @@ namespace AudioStorageService
             }
             app.UseMvc();
 
+            app.UseHangfireServer();
+
+            //Adding auto-migrate cuz docker
             serviceProvider
                 .GetService<MusicContext>()
                 .Database
                 .Migrate();
+
+            var MContext = serviceProvider.GetService<MusicContext>();
+            MContext.Artists.Add(new Artist()
+            {
+                Name = "No Artist",
+                Albums = new List<Album>(),
+                Songs = new List<Song>()
+            });
         }
     }
 }

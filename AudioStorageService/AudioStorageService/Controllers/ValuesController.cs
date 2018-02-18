@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AudioStorageService.DI;
+using AudioStorageService.EFModels;
+using Hangfire;
 using Microsoft.AspNetCore.Mvc;
+using AudioStorageService.LocalStorage;
 
 namespace AudioStorageService.Controllers
 {
@@ -11,16 +14,19 @@ namespace AudioStorageService.Controllers
     public class ValuesController : Controller
     {
         private readonly KerooshaSettings _serverSettings;
+        private readonly MusicContext _musicContext;
 
-        public ValuesController(KerooshaSettings serverSettings)
+        public ValuesController(KerooshaSettings serverSettings, MusicContext musicContext)
         {
             _serverSettings = serverSettings;
+            _musicContext = musicContext;
         }
         
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
         {
+            BackgroundJob.Enqueue(() => new LocalMusicLibrary(_musicContext).ScanFolder());
             return new string[]
             {
                 _serverSettings.First(x => x.key == "version").value
@@ -31,7 +37,7 @@ namespace AudioStorageService.Controllers
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            return "value";
+            return "cock";
         }
 
         // POST api/values

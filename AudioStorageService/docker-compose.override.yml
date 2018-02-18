@@ -6,6 +6,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - "80"
+    volumes:
+      - "e:/test/:/app/Music"
   db:
     environment:
       POSTGRES_PASSWORD: goaway359
