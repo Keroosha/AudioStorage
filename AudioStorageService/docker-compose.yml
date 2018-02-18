@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  audiostorageservice:
+    image: audiostorageservice
+    build:
+      context: .
+      dockerfile: AudioStorageService/Dockerfile
