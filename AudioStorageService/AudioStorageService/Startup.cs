@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using AudioStorageService.DI;
 using AudioStorageService.EFModels;
@@ -58,6 +59,7 @@ namespace AudioStorageService
             app.UseHangfireServer();
 
            //Adding auto-migrate cuz docker
+            Thread.Sleep(5000);
             try
             {
                 serviceProvider
