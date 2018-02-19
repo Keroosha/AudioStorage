@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  audiostorageservice:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
+    volumes:
+      - "e:/test/:/app/Music"
+  db:
+    environment:
+      POSTGRES_PASSWORD: goaway359
+    ports:
+      - "5432:5432"

@@ -1,0 +1,14 @@
+[
+  {
+    "key": "version",
+    "value": "v0.0.1"
+  },
+  {
+    "key": "DbString",
+    "value": "Host=db;Database=postgres;Username=postgres;Password=goaway359"
+  },
+  {
+    "key": "ScanFolder",
+    "value": "Music" 
+  }
+]
