@@ -26,7 +26,6 @@ namespace AudioStorageService.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            BackgroundJob.Enqueue(() => new LocalMusicLibrary(_musicContext).ScanFolder());
             return new string[]
             {
                 _serverSettings.First(x => x.key == "version").value

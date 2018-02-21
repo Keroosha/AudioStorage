@@ -35,15 +35,17 @@ namespace AudioStorageService.Controllers
         }
 
         [HttpGet("Album/{album}")]
-        public List<Song> SongsByAlbum(string album)
+        public List<Song> Album(string album)
         {
             var findedAlbum = _musicContext.Albums
-                            .FirstOrDefault(x => x.Name == album)
-                        ?? new Album
-                        {
-                            Songs = new List<Song>()
-                        };
-            
+            .Include(x => x.Songs)
+            .Include(x => x.Artist)
+            .FirstOrDefault(x => x.Name == album)
+            ?? new Album
+            {
+                Songs = new List<Song>()
+            };
+
             return findedAlbum.Songs;
         }
     }

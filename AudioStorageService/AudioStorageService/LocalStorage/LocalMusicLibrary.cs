@@ -37,7 +37,7 @@ namespace AudioStorageService.LocalStorage
                 ScanDirectory(dir);
             }
             
-            foreach (var filePath in Directory.GetFiles(folderPath, "*.m4a"))
+            foreach (var filePath in Directory.GetFiles(folderPath, "*.mp3"))
             {
                 if (_musicContext.Songs.Any())
                     if (_musicContext.Songs.FirstOrDefault(x => x.Path == filePath) != null)

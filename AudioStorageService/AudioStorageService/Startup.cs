@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AudioStorageService.DI;
 using AudioStorageService.EFModels;
 using AudioStorageService.EFModels.Music;
+using AudioStorageService.LocalStorage;
 using Hangfire;
 using Hangfire.PostgreSql;
 using Microsoft.AspNetCore.Builder;
@@ -15,6 +16,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 
 namespace AudioStorageService
 {
@@ -34,7 +36,11 @@ namespace AudioStorageService
         {
             var dbString = new KerooshaSettings().First(x => x.key == "DbString").value;
 
-            services.AddMvc();
+            services.AddMvc().AddJsonOptions(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
+
             services.AddTransient<KerooshaSettings>();
             services.AddHangfire(configuration =>
             {
@@ -63,23 +69,15 @@ namespace AudioStorageService
             Thread.Sleep(5000);
             try
             {
-                serviceProvider
-                    .GetService<MusicContext>()
-                    .Database
-                    .Migrate();
+                var musicContext = serviceProvider.GetService<MusicContext>();
+                musicContext.Database.Migrate();
+
+                BackgroundJob.Enqueue(() => new LocalMusicLibrary(musicContext).ScanFolder());
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
-
-            var MContext = serviceProvider.GetService<MusicContext>();
-            MContext.Artists.Add(new Artist()
-            {
-                Name = "No Artist",
-                Albums = new List<Album>(),
-                Songs = new List<Song>()
-            });
         }
     }
 }

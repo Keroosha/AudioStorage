@@ -5,9 +5,9 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - "5000:80"
+      - "80"
     volumes:
-      - "/home/keroosha/Music/:/app/Music"
+      - "/e/test:/app/Music"
     depends_on:
       - "db"
   db:
