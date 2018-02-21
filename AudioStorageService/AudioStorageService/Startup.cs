@@ -59,6 +59,7 @@ namespace AudioStorageService
             app.UseHangfireServer();
 
            //Adding auto-migrate cuz docker
+           //<TODO>Replace this hack!</TODO>
             Thread.Sleep(5000);
             try
             {
