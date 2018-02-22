@@ -7,7 +7,9 @@ services:
     ports:
       - "80"
     volumes:
-      - "e:/test/:/app/Music"
+      - "/e/test:/app/Music"
+    depends_on:
+      - "db"
   db:
     environment:
       POSTGRES_PASSWORD: goaway359
