@@ -1,20 +1,34 @@
 <template>
-  <div id="app" class="container-fluid">
-
+  <div id="app">
+    <router-view name="header"></router-view>
+    <router-view name="sideMenu"></router-view>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'app',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
+  import AppHeader from "./Components/Header";
+  import Sidemenu from "./Components/Sidemenu";
+
+  export default {
+    name: 'app',
+    data () {
+      return {
+      }
+    },
+    components: {
+      AppHeader,
+      Sidemenu
     }
   }
-}
 </script>
 
 <style>
   @import "~bootstrap/dist/css/bootstrap.css";
+  html, body, #app{
+    height: 100%;
+  }
+  .fill {
+    height: 100%;
+  }
 </style>
