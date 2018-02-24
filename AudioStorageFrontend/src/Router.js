@@ -2,11 +2,10 @@ import VueRouter from "vue-router";
 import AppHeader from "./Components/Header";
 import Sidemenu from "./Components/Sidemenu";
 
-//Welcome related components
-import Welcome from "./Components/Welcome";
+// Welcome related components
+import Welcome from "./Components/WelcomeComponents/Welcome";
 import WelcomeDefault from "./Components/WelcomeComponents/WelcomeDefault";
 import WelcomeLogin from "./Components/WelcomeComponents/WelcomeLogin";
-
 
 import Vue from "vue";
 
