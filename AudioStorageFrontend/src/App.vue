@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <router-view name="header"></router-view>
-    <router-view name="sideMenu"></router-view>
+    <router-view v-on:openMenu="openMenu" name="header"></router-view>
+    <router-view v-if="slideMenu" name="sideMenu"></router-view>
     <router-view></router-view>
   </div>
 </template>
@@ -14,11 +14,17 @@
     name: 'app',
     data () {
       return {
+        slideMenu: false
       }
     },
     components: {
       AppHeader,
       Sidemenu
+    },
+    methods: {
+      openMenu() {
+        this.slideMenu = !this.slideMenu;
+      }
     }
   }
 </script>

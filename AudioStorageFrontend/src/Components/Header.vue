@@ -1,6 +1,6 @@
 <template>
   <header class="navbar navbar-dark sticky-top flex-md-nowrap p-0 navcolor">
-    <a class="navbar-brand title">AudioStorage</a>
+    <a @click="callMenu" class="navbar-brand title">AudioStorage</a>
     <user-dropbox></user-dropbox>
   </header>
 </template>
@@ -12,6 +12,11 @@
     name: "AppHeader",
     components: {
       UserDropbox
+    },
+    methods: {
+      callMenu() {
+        this.$emit("openMenu");
+      }
     }
   }
 </script>

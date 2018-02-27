@@ -2,6 +2,10 @@ import VueRouter from "vue-router";
 import AppHeader from "./Components/Header";
 import Sidemenu from "./Components/Sidemenu";
 
+// MainApp related components
+import Overview from "./Components/Overview";
+import ImageGrid from "./Components/OverviewComponents/ImageGrid";
+
 // Welcome related components
 import Welcome from "./Components/WelcomeComponents/Welcome";
 import WelcomeDefault from "./Components/WelcomeComponents/WelcomeDefault";
@@ -13,6 +17,7 @@ Vue.use(VueRouter);
 
 export default new VueRouter({
   routes: [
+    // Страница входа
     {
       path: "/",
       name: "Welcome",
@@ -32,14 +37,23 @@ export default new VueRouter({
         }
       ]
     },
+    // Главная страница
     {
       path: "/App",
       name: "MainApp",
       components: {
-        default: {},
+        default: Overview,
         "header": AppHeader,
         "sideMenu": Sidemenu
-      }
+      },
+      children: [
+        {
+          path: "/",
+          components: {
+            "ViewType": ImageGrid
+          }
+        }
+      ]
     }
   ]
 });
