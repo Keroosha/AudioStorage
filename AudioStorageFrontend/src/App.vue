@@ -14,7 +14,7 @@
     name: 'app',
     data () {
       return {
-        slideMenu: false
+        slideMenu: true
       }
     },
     components: {
