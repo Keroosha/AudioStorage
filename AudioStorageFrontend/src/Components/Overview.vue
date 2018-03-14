@@ -6,7 +6,10 @@
 
 <script>
     export default {
-        name: "overview"
+      name: "overview",
+      created() {
+        this.$store.dispatch("loadAlbums");
+      }
     }
 </script>
 
