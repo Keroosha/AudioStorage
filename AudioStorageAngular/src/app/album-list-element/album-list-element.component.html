@@ -1,0 +1,20 @@
+<div class="card center-block">
+  <img
+    src="https://images.genius.com/a771fd3e611d5c86a13b17b05dbb15f9.500x500x1.jpg"
+    alt=""
+    class="card-img-top album-small">
+  <div class="card-body">
+    <b>{{ album.name }}</b>
+    <br>
+    <i>Release date: {{album.releaseDate | slice:0:-15}}</i>
+    <br>
+  </div>
+  <div class="card-body">
+    <button class="btn btn-primary">
+      SongList
+    </button>
+    <button class="btn btn-success" (click)="playAlbum.emit(album)">
+      Play
+    </button>
+  </div>
+</div>

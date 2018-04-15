@@ -51,12 +51,14 @@ namespace AudioStorageService.LocalStorage
                              {
                                  Name = mp3File.Tag.Performers.FirstOrDefault(),
                              };
+
+                int albumYear = mp3File.Tag.Year <= 1000 ? 1900 : (int)mp3File.Tag.Year;
                 var album = _musicContext.Albums.FirstOrDefault(x => x.Name == mp3File.Tag.Album)
                             ?? new Album()
                             {
                                 Name = mp3File.Tag.Album,
                                 Artist = artist,
-                                ReleaseDate = new DateTime(Int32.Parse(mp3File.Tag.Year.ToString()), 1, 1)
+                                ReleaseDate = new DateTime(albumYear, 1, 1)
                             };
                 var song = new Song()
                 {
