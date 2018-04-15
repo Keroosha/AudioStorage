@@ -22,7 +22,7 @@ export class PlayerComponent implements OnChanges {
     if (this.howlerInstance) {
       this.howlerInstance.stop();
     }
-    debugger;
+    
     if (!(this.album.songs[this.currentTrackIndex])) {
       return;
     }
@@ -42,7 +42,6 @@ export class PlayerComponent implements OnChanges {
 
   nextTrack() {
     this.currentTrackIndex++;
-    debugger;
     this.playTrack();
   }
 
