@@ -51,6 +51,8 @@ namespace AudioStorageService
             {
                 options.UseNpgsql(dbString);
             });
+
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,8 +62,8 @@ namespace AudioStorageService
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors(builder => { builder.AllowAnyOrigin(); });
             app.UseMvc();
-
             app.UseHangfireServer();
 
            //Adding auto-migrate cuz docker
