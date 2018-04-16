@@ -7,7 +7,7 @@ import Album from './models/Album';
 export class AlbumsService {
 
   private albums;
-  private link = 'http://localhost:32768/api/Music/';
+  private link = 'http://localhost:32769/api/Music/';
 
   constructor(private http: HttpClient) { }
 

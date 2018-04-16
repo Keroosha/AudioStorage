@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {PlayerService} from '../player.service';
 
 @Component({
   selector: 'app-header',

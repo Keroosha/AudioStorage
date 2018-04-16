@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+
 import Album from './models/Album';
+import {PlayerService} from './player.service';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +10,10 @@ import Album from './models/Album';
 })
 export class AppComponent {
   title = 'app';
-  playingNow: Album;
+
+  constructor(private playerService: PlayerService) {}
 
   sendAlbumToPlayer(event: Album) {
-    this.playingNow = event;
+    this.playerService.assignNewAlbum(event);
   }
 }
