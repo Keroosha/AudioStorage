@@ -1,0 +1,11 @@
+.album-small {
+  height: 100px;
+  width: 100px;
+}
+
+div {
+  margin: 5px;
+  padding: 10px;
+  width: 18rem;
+  height: 20rem;
+}

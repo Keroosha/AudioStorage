@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <h3 class="h3">Albums</h3>
+  </div>
+  <div class="row">
+      <app-album-list-element
+        *ngFor="let album of loadedAlbums"
+        [album]="album"
+        (playAlbum)="playAlbumWrapper($event)">
+      </app-album-list-element>
+  </div>
+</div>

@@ -31,9 +31,9 @@ namespace AudioStorageService.Controllers
         }
         
         [HttpGet("Albums")]
-        public DbSet<Album> Albums()
+        public IIncludableQueryable<Album, Artist> Albums()
         {
-            return _musicContext.Albums;
+            return _musicContext.Albums.Include(x => x.Artist);
         }
 
         [HttpGet("Album/{albumId}")]

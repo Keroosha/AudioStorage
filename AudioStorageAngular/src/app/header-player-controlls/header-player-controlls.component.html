@@ -1,0 +1,9 @@
+<div class="d-flex p-2">
+  <a class="fa fa-play"></a>
+  <a class="fa fa-step-backward" (click)="playerService.previousTrack()"></a>
+  <a class="fa fa-step-forward" (click)="playerService.nextTrack()"></a>
+  <i>{{ playerService.currentTrack ?
+    playerService.currentTrack.artist ? playerService.currentTrack.artist.name
+    : "UnknownArtist" : "" }}</i> -
+  <i>{{ playerService.currentTrack ? playerService.currentTrack.name : ""}}</i>
+</div>
